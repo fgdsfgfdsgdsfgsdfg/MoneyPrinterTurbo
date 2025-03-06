@@ -1,0 +1,1 @@
+nohup python main.py > logs/api.log 2>&1 &
