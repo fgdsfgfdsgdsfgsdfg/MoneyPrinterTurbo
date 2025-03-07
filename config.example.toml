@@ -192,3 +192,10 @@
     # Get your API key at https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/SpeechServices
     speech_key=""
     speech_region=""
+
+
+[cosy]
+    # funaudiollm API Key
+    # Get your API key at https://cloud.siliconflow.cn/account/ak
+    cosy_url=""
+    cosy_key=""

@@ -595,10 +595,10 @@ with middle_panel:
     with st.container(border=True):
         st.write(tr("Audio Settings"))
 
-        # tts_providers = ['edge', 'azure']
-        # tts_provider = st.selectbox(tr("TTS Provider"), tts_providers)
-
-        voices = voice.get_all_azure_voices(filter_locals=support_locales)
+        tts_providers = ['azure', 'FunAudioLLM/CosyVoice2-0.5B']
+        # tts_providers = ['default', 'edge', 'azure', 'FunAudioLLM/CosyVoice2-0.5B']
+        tts_provider = st.selectbox(tr("TTS Provider"), tts_providers)
+        voices = voice.get_all_azure_voices(filter_locals=support_locales, tts_provider=tts_provider)
         friendly_names = {
             v: v.replace("Female", tr("Female"))
             .replace("Male", tr("Male"))
@@ -671,6 +671,17 @@ with middle_panel:
             )
             config.azure["speech_region"] = azure_speech_region
             config.azure["speech_key"] = azure_speech_key
+        if voice.is_cosy_voice(voice_name):
+            saved_cosy_url = config.cosy.get("cosy_url", "")
+            saved_cosy_key = config.cosy.get("cosy_key", "")
+            cosy_url = st.text_input(
+                tr("Cosy Url"), value=saved_cosy_url
+            )
+            cosy_key = st.text_input(
+                tr("Cosy Key"), value=saved_cosy_key, type="password"
+            )
+            config.cosy["cosy_url"] = saved_cosy_url
+            config.cosy["cosy_key"] = cosy_key
 
         params.voice_volume = st.selectbox(
             tr("Speech Volume"),

@@ -79,7 +79,7 @@ def generate_audio(task_id, params, video_script):
         voice_rate=params.voice_rate,
         voice_file=audio_file,
     )
-    if sub_maker is None:
+    if not sub_maker:
         sm.state.update_task(task_id, state=const.TASK_STATE_FAILED)
         logger.error(
             """failed to generate audio:
@@ -89,7 +89,7 @@ def generate_audio(task_id, params, video_script):
         )
         return None, None, None
 
-    audio_duration = math.ceil(voice.get_audio_duration(sub_maker))
+    audio_duration = math.ceil(voice.get_audio_duration(audio_file))
     return audio_file, audio_duration, sub_maker
 
 

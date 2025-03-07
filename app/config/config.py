@@ -45,6 +45,7 @@ app = _cfg.get("app", {})
 whisper = _cfg.get("whisper", {})
 proxy = _cfg.get("proxy", {})
 azure = _cfg.get("azure", {})
+cosy = _cfg.get("cosy", {})
 ui = _cfg.get("ui", {})
 
 hostname = socket.gethostname()
